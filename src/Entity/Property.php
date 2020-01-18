@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 
+use Symfony\Component\Validator\Constraints as Assert;
+// use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PropertyRepository")
  */
