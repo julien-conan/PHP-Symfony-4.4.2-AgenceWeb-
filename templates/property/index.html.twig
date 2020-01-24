@@ -4,7 +4,14 @@
 
 {% block body %}
     <div class="container mt-4">
-        <font face="montserrat"><h1>Voir toutes nos offres <h1><br><br></font>  
+        <font face="montserrat"><h1>Voir toutes nos offres <h1><br><br></font> 
+        <div class="row">
+                {% for property in properties %}
+                <div class="col-md-4">
+                    {% include 'property/_property.html.twig' %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
 
