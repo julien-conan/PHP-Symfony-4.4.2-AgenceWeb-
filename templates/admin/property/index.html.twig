@@ -1,13 +1,8 @@
-<<<<<<< HEAD
 {% extends 'base.html.twig' %}
-=======
-{% extends 'base.html.twig'%}
->>>>>>> 7d988656f1c39cbc6bc33b008e1a4e417cb2ba07
 
 {% block title 'Gérer les biens' %}
 
 {% block body %}
-<<<<<<< HEAD
   <div class="container mt-4">
 
     <h1>Gérer les biens</h1>
@@ -47,29 +42,4 @@
     </div>
 
   </div>
-=======
-    <div class="container mt-4">
-
-        <h1>Gérer les biens</h1>
-
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Titre</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for property in properties %}
-            <tr>
-                <td>{{ property.title }}</td>
-                <td>
-                    <a href="{{ path('admin.property.edit', {id: property.id })}}" class="btn btn-secondary">Editer</a>
-                </td>
-            </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
->>>>>>> 7d988656f1c39cbc6bc33b008e1a4e417cb2ba07
 {% endblock %}
