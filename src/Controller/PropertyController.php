@@ -1,17 +1,15 @@
 <?php
 
 namespace App\Controller;
-
+// Ne pas toucher aux use !
 use App\Entity\Property;
 use Knp\Component\Pager\PaginatorInterface;
-// use Doctrine\Common\Persistence\ObjectManager;
 use App\Repository\PropertyRepository; 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-
 use Doctrine\ORM\EntityManagerInterface;
-
+use Symfony\Component\HttpFoundation\Response;
 
 class PropertyController extends AbstractController
 {
@@ -22,29 +20,32 @@ class PropertyController extends AbstractController
     private $repository;
       /**
      *   
-     * @var ObjectManager
+     * @var EntityManagerInterface
      */
-    // private $em;
+     private $em;  
 
      /**
      * PropertyController constructor.
      * @param PropertyRepository $repository
-     * @param ObjectManager $em
+     * @param EntityManagerInterface $em
      */
-    public function __construct(PropertyRepository $repository)
+    public function __construct(PropertyRepository $repository, EntityManagerInterface $em)
     {
         $this->repository = $repository;
-        
+        $this->em = $em;
     }
 
     /**
      * @route("/biens", name="property.index")
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
      */
     public function index(PaginatorInterface $paginator, Request $request): Response
     {   
-        $properties = $paginator->paginate($this->repository->findAllVisibleQuery(), 
-        $request->query->getIn('page', 1), 12
+        $properties = $paginator->paginate(
+        $this->repository->findAllVisibleQuery(), 
+        $request->query->getInt('page', 1), 12
         );
         return $this->render('property/index.html.twig', [
             'current_menu' => 'properties',
@@ -55,10 +56,12 @@ class PropertyController extends AbstractController
     /**
      * @route("/biens/{slug}-{id}", name="property.show", requirements={"slug": "[a-z0-9\-]*"})
      * @param Property $property
+     * @param string $slug
      * @return Response
      */
     public function show(Property $property, string $slug): Response
-    {   if ($property->getSlug() !== $slug) {
+    {   
+        if ($property->getSlug() !== $slug) {
          return $this->redirectToRoute('property.show', [
             'id' =>$property->getId(),
             'slug' =>$property->getSlug()
