@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Controller\PropertyController;
+use Knp\Component\Pager\PaginatorInterface; // test
 use App\Entity\PropertySearch;  /* a conserver ? */
 use App\Entity\Property;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -29,7 +30,7 @@ class PropertyRepository extends ServiceEntityRepository
     public function findAllVisibleQuery(): Query
     {
         return $this->findVisibleQuery()
-        ->getQuery()
+        ->getQuery();
         
     }
 
