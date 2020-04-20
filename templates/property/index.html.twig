@@ -1,6 +1,6 @@
 {% extends 'base.html.twig'%}
 
-{% block title 'Voir toutes nos offres' %}
+{% block title 'Tous nos biens ' %}
 
 {% block body %}
     <div class="jumbotron">
@@ -12,6 +12,9 @@
             </div>
             <div class="col">
             {{ form_row(form.maxPrice) }}
+            </div>
+            <div class="col">
+            {{ form_row(form.options) }}
             </div>
             <div class="col">
                 <div class="form-group">

@@ -3,8 +3,8 @@
 namespace App\Repository;
 
 use App\Controller\PropertyController;
-use Knp\Component\Pager\PaginatorInterface; // test
-use App\Entity\PropertySearch;  /* a conserver ? */
+use Knp\Component\Pager\PaginatorInterface; 
+use App\Entity\PropertySearch;  
 use App\Entity\Property;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
@@ -43,6 +43,17 @@ class PropertyRepository extends ServiceEntityRepository
             $query = $query
             ->andWhere('p.surface >= :minsurface')
             ->setParameter('minsurface', $search->getMinSurface());
+        }
+
+        if ($search->getOptions()->count() > 0) {
+            $k = 0;
+            foreach ($search->getOptions() as $option) {
+                $k++;
+                $query = $query
+                    ->andWhere(":option$k MEMBER OF p.options")
+                    ->setParameter("option$k", $option)
+                ;
+            }
         }
 
 
