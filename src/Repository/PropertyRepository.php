@@ -55,7 +55,15 @@ class PropertyRepository extends ServiceEntityRepository
                 ;
             }
         }
+        
+       /* if ($search->getTitle())
+        {
+            $query = $query
+            ->andWhere('p.title like :title')
+            ->setParameter("title", "%".$title."%" ) // =regex
 
+        }
+        */
 
 
         return $query->getQuery();

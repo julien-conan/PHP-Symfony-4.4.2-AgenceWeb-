@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-// Ne pas toucher aux use !
 use App\Entity\Property;
 use App\Entity\PropertySearch;
 use App\Form\ContactType;
@@ -58,6 +57,7 @@ class PropertyController extends AbstractController
         $this->repository->findAllVisibleQuery($search), 
         $request->query->getInt('page', 1), 12
         );
+        
         return $this->render('property/index.html.twig', [
             'current_menu' => 'properties',
             'properties' => $properties,

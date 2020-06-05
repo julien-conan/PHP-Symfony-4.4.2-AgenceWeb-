@@ -9,6 +9,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 
 class PropertySearchType extends AbstractType
 {
@@ -36,6 +38,8 @@ class PropertySearchType extends AbstractType
                 'class' => Option::class,
                 'choice_label' => 'name'
             ])
+            
+
         ;
     }
 
@@ -53,3 +57,5 @@ class PropertySearchType extends AbstractType
         return '';
     }
 }
+
+

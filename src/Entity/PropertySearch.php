@@ -66,6 +66,7 @@ class PropertySearch {
         return $this;
     }
 
+    
      /**
      * @return ArrayCollection
      */
@@ -75,7 +76,7 @@ class PropertySearch {
     }
 
     /**
-     * @param ArrayCollection $tags
+     * @param ArrayCollection $options
      */
     public function setOptions(ArrayCollection $options): void
     {
